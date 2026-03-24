@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>✨ The Sacred Texts of Code ✨</title>
     
-    <!-- 🔒 Security Features -->
-    <meta name="description" content="Ancient wisdom for the digital age. Interactive manuscript with dual-page reading mode.">
+    <meta name="description" content="Ancient programming wisdom in a beautiful interactive manuscript with dual-page reading mode.">
     
     <!-- Open Graph for social sharing -->
     <meta property="og:title" content="The Sacred Texts of Code">
@@ -26,13 +25,13 @@
         
         .header {
             text-align: center;
-            padding: 40px 20px;
+            padding: 30px 20px;
             background: linear-gradient(45deg, rgba(139, 69, 19, 0.1), rgba(212, 175, 55, 0.1));
             border-bottom: 3px solid #8B4513;
         }
         
         .title {
-            font-size: 3em;
+            font-size: 2.5em;
             margin: 0;
             text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
             background: linear-gradient(45deg, #d4af37, #f4d03f);
@@ -41,48 +40,8 @@
             -webkit-text-fill-color: transparent;
         }
         
-        .subtitle {
-            font-size: 1.2em;
-            margin-top: 10px;
-            opacity: 0.9;
-        }
-        
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            padding: 40px 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .feature {
-            text-align: center;
-            padding: 20px;
-            background: rgba(139, 69, 19, 0.2);
-            border: 2px solid #8B4513;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
-        
-        .feature:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
-        }
-        
-        .feature-icon {
-            font-size: 2em;
-            margin-bottom: 10px;
-        }
-        
-        .feature-title {
-            font-size: 1.3em;
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
-        
         .main-content {
-            padding: 40px 20px;
+            padding: 20px;
         }
         
         #sacred-text-container {
@@ -108,32 +67,17 @@
             50% { transform: translateY(-10px); }
         }
         
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            border-top: 2px solid #8B4513;
-            background: rgba(15, 15, 35, 0.8);
-        }
-        
-        footer a {
-            color: #d4af37;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        footer a:hover {
-            color: #f4d03f;
-            text-decoration: underline;
-        }
-        
         @media (max-width: 768px) {
             .title {
-                font-size: 2em;
+                font-size: 1.8em;
             }
             
-            .features {
-                grid-template-columns: 1fr;
+            .header {
                 padding: 20px;
+            }
+            
+            .main-content {
+                padding: 10px;
             }
         }
     </style>
@@ -141,34 +85,7 @@
 <body>
     <header class="header">
         <h1 class="title">The Sacred Texts of Code</h1>
-        <p class="subtitle">📜 Behold the ancient programming wisdom, preserved through the ages and presented in a beautiful interactive manuscript.</p>
     </header>
-
-    <section class="features">
-        <div class="feature">
-            <div class="feature-icon">📖</div>
-            <div class="feature-title">Dual-Page Reading</div>
-            <p>Desktop & mobile optimized</p>
-        </div>
-        
-        <div class="feature">
-            <div class="feature-icon">⛶</div>
-            <div class="feature-title">Fullscreen Mode</div>
-            <p>Immersive reading experience</p>
-        </div>
-        
-        <div class="feature">
-            <div class="feature-icon">🔒</div>
-            <div class="feature-title">Protected Content</div>
-            <p>Sacred pages secured</p>
-        </div>
-        
-        <div class="feature">
-            <div class="feature-icon">📱</div>
-            <div class="feature-title">Touch Navigation</div>
-            <p>Swipe through wisdom</p>
-        </div>
-    </section>
 
     <main class="main-content">
         <div id="sacred-text-container">
@@ -178,15 +95,8 @@
         </div>
     </main>
 
-    <footer>
-        <p>
-            🔮 Experience the ancient wisdom in digital form<br>
-            <small>Powered by the <a href="https://npmjs.com/package/image-flipbook" target="_blank">ImageFlipbook Library</a></small>
-        </p>
-    </footer>
-
     <script>
-        // Simple ImageFlipbook class with fixed methods
+        // Simple ImageFlipbook class
         class ImageFlipbook {
             constructor(options = {}) {
                 this.config = {
