@@ -174,54 +174,74 @@
         </p>
     </footer>
 
-    <!-- Load ImageFlipbook v1.1.1 from CDN -->
-    <script src="https://unpkg.com/image-flipbook@1.1.1/dist/image-flipbook.min.js"></script>
+    <!-- Load ImageFlipbook v1.1.1 locally for reliability -->
+    <script src="./image-flipbook.min.js"></script>
 
     <script>
-        // Build page array (68 Sacred Text pages)
-        const pages = [];
-        for (let i = 1; i <= 68; i++) {
-            const pageNum = i.toString().padStart(2, '0');
-            pages.push(`pages/page-${pageNum}.png`);
-        }
-
-        // Initialize Sacred Texts with v1.1.1 security hardening
-        const sacredText = new ImageFlipbook({
-            container: '#sacred-text-container',
-            title: '',  // Title in header instead
-            
-            // Your 68 Sacred Text pages (local paths = secure!)
-            pages: pages,
-            
-            // Chapter navigation
-            chapters: [
-                { name: "📜 Frontispiece", page: 1 },
-                { name: "👑 Saints & Hours", page: 10 }, 
-                { name: "⚡ Sacred Protocols", page: 26 },
-                { name: "📚 Gospels & Wisdom", page: 50 },
-                { name: "🔚 Colophon", page: 68 }
-            ],
-            
-            // Reading experience
-            theme: 'medieval',
-            allowDualPage: true,        // ✨ Reader can choose 1 or 2 page view
-            imageFit: 'contain',        // Shows full pages without cropping
-            fullscreenEnabled: true,
-            chapterStyle: 'buttons',
-            chapterPosition: 'bottom',
-            socialSharing: false,       // Clean interface
-            
-            // 🔒 v1.1.1 Security Features
-            enforceHTTPS: true,         // Convert any HTTP images to HTTPS
-            preventRightClick: true,    // Protect Sacred Text images from easy saving
-            validateImageSources: false // Not needed - we use secure local paths
-        });
-
-        console.log('✨ Sacred Texts of Code v1.1.1 loaded with security hardening!');
-        
-        // Add some mystical loading flair
+        // Wait for page to load completely
         window.addEventListener('load', () => {
-            console.log('🔮 The ancient wisdom has been awakened...');
+            console.log('🚀 Page loaded, checking ImageFlipbook...');
+            
+            if (typeof ImageFlipbook === 'undefined') {
+                console.error('❌ ImageFlipbook library not found!');
+                document.getElementById('sacred-text-container').innerHTML = 
+                    '<p style="color: #dc3545; text-align: center; padding: 40px;">❌ Sacred Texts library failed to load. Please refresh the page.</p>';
+                return;
+            }
+            
+            console.log('✅ ImageFlipbook library found');
+            
+            try {
+                // Build page array (68 Sacred Text pages)
+                const pages = [];
+                for (let i = 1; i <= 68; i++) {
+                    const pageNum = i.toString().padStart(2, '0');
+                    pages.push(`pages/page-${pageNum}.png`);
+                }
+                
+                console.log(`📄 Built ${pages.length} page paths`);
+                console.log('🔧 Initializing Sacred Texts flipbook...');
+
+                // Initialize Sacred Texts with v1.1.1 security hardening
+                const sacredText = new ImageFlipbook({
+                    container: '#sacred-text-container',
+                    title: '',  // Title in header instead
+                    
+                    // Your 68 Sacred Text pages (local paths = secure!)
+                    pages: pages,
+                    
+                    // Chapter navigation
+                    chapters: [
+                        { name: "📜 Frontispiece", page: 1 },
+                        { name: "👑 Saints & Hours", page: 10 }, 
+                        { name: "⚡ Sacred Protocols", page: 26 },
+                        { name: "📚 Gospels & Wisdom", page: 50 },
+                        { name: "🔚 Colophon", page: 68 }
+                    ],
+                    
+                    // Reading experience
+                    theme: 'medieval',
+                    allowDualPage: true,        // ✨ Reader can choose 1 or 2 page view
+                    imageFit: 'contain',        // Shows full pages without cropping
+                    fullscreenEnabled: true,
+                    chapterStyle: 'buttons',
+                    chapterPosition: 'bottom',
+                    socialSharing: false,       // Clean interface
+                    
+                    // 🔒 v1.1.1 Security Features
+                    enforceHTTPS: true,         // Convert any HTTP images to HTTPS
+                    preventRightClick: true,    // Protect Sacred Text images from easy saving
+                    validateImageSources: false // Not needed - we use secure local paths
+                });
+
+                console.log('✅ Sacred Texts of Code v1.1.1 loaded with security hardening!');
+                console.log('🔮 The ancient wisdom has been awakened...');
+                
+            } catch (error) {
+                console.error('❌ Error initializing Sacred Texts:', error);
+                document.getElementById('sacred-text-container').innerHTML = 
+                    `<p style="color: #dc3545; text-align: center; padding: 40px;">❌ Error loading Sacred Texts: ${error.message}</p>`;
+            }
         });
     </script>
 </body>
