@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>✨ The Sacred Texts of Code ✨</title>
     
-    <!-- 🔒 Security Features (auto-added by ImageFlipbook v1.1.1) -->
+    <!-- 🔒 Security Features -->
     <meta name="description" content="Ancient wisdom for the digital age. Interactive manuscript with dual-page reading mode.">
     
     <!-- Open Graph for social sharing -->
@@ -28,219 +28,744 @@
             text-align: center;
             padding: 40px 20px;
             background: linear-gradient(45deg, rgba(139, 69, 19, 0.1), rgba(212, 175, 55, 0.1));
-            border-bottom: 2px solid #d4af37;
+            border-bottom: 3px solid #8B4513;
         }
         
-        .sacred-title {
+        .title {
             font-size: 3em;
             margin: 0;
             text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
-            font-weight: bold;
-            background: linear-gradient(45deg, #d4af37, #ffd700);
+            background: linear-gradient(45deg, #d4af37, #f4d03f);
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
         
-        .sacred-subtitle {
+        .subtitle {
             font-size: 1.2em;
-            margin: 10px 0 0 0;
+            margin-top: 10px;
             opacity: 0.9;
-            font-style: italic;
-        }
-        
-        .intro {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 0 20px;
-            text-align: center;
-            line-height: 1.6;
-        }
-        
-        .intro p {
-            font-size: 1.1em;
-            margin: 20px 0;
-        }
-        
-        .manuscript-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
         }
         
         .features {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin: 30px 0;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
         }
         
         .feature {
-            background: rgba(139, 69, 19, 0.2);
-            padding: 15px 25px;
-            border-radius: 10px;
-            border: 1px solid #8B4513;
             text-align: center;
+            padding: 20px;
+            background: rgba(139, 69, 19, 0.2);
+            border: 2px solid #8B4513;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
         }
         
         .feature-icon {
             font-size: 2em;
-            display: block;
             margin-bottom: 10px;
+        }
+        
+        .feature-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .main-content {
+            padding: 40px 20px;
+        }
+        
+        #sacred-text-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: 400px;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            font-size: 1.3em;
+        }
+        
+        .loading::before {
+            content: "📜 ";
+            display: inline-block;
+            animation: bounce 1s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
         
         footer {
             text-align: center;
             padding: 40px 20px;
-            background: rgba(0,0,0,0.3);
-            margin-top: 40px;
-            border-top: 1px solid #8B4513;
+            border-top: 2px solid #8B4513;
+            background: rgba(15, 15, 35, 0.8);
         }
         
         footer a {
             color: #d4af37;
             text-decoration: none;
+            transition: color 0.3s ease;
         }
         
         footer a:hover {
-            color: #ffd700;
+            color: #f4d03f;
+            text-decoration: underline;
         }
         
-        /* Mobile responsive */
         @media (max-width: 768px) {
-            .sacred-title {
+            .title {
                 font-size: 2em;
             }
             
             .features {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .feature {
-                max-width: 300px;
+                grid-template-columns: 1fr;
+                padding: 20px;
             }
         }
     </style>
 </head>
 <body>
     <header class="header">
-        <h1 class="sacred-title">✨ THE SACRED TEXTS OF CODE ✨</h1>
-        <p class="sacred-subtitle">Ancient Wisdom for the Digital Age</p>
+        <h1 class="title">The Sacred Texts of Code</h1>
+        <p class="subtitle">📜 Behold the ancient programming wisdom, preserved through the ages and presented in a beautiful interactive manuscript.</p>
     </header>
 
-    <div class="intro">
-        <p>📜 Behold the ancient programming wisdom, preserved through the ages and presented in a beautiful interactive manuscript.</p>
+    <section class="features">
+        <div class="feature">
+            <div class="feature-icon">📖</div>
+            <div class="feature-title">Dual-Page Reading</div>
+            <p>Desktop & mobile optimized</p>
+        </div>
         
-        <p>🔮 Experience the dual-page reading mode, just like reading a physical tome. Click between single and dual-page views to match your device and preference.</p>
+        <div class="feature">
+            <div class="feature-icon">⛶</div>
+            <div class="feature-title">Fullscreen Mode</div>
+            <p>Immersive reading experience</p>
+        </div>
         
-        <div class="features">
-            <div class="feature">
-                <span class="feature-icon">📖</span>
-                <strong>Dual-Page Reading</strong><br>
-                Desktop & mobile optimized
-            </div>
-            <div class="feature">
-                <span class="feature-icon">⛶</span>
-                <strong>Fullscreen Mode</strong><br>
-                Immersive reading experience
-            </div>
-            <div class="feature">
-                <span class="feature-icon">🔒</span>
-                <strong>Protected Content</strong><br>
-                Sacred pages secured
-            </div>
-            <div class="feature">
-                <span class="feature-icon">📱</span>
-                <strong>Touch Navigation</strong><br>
-                Swipe through wisdom
+        <div class="feature">
+            <div class="feature-icon">🔒</div>
+            <div class="feature-title">Protected Content</div>
+            <p>Sacred pages secured</p>
+        </div>
+        
+        <div class="feature">
+            <div class="feature-icon">📱</div>
+            <div class="feature-title">Touch Navigation</div>
+            <p>Swipe through wisdom</p>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div id="sacred-text-container">
+            <div class="loading">
+                Preparing the sacred manuscript...
             </div>
         </div>
-    </div>
-
-    <div class="manuscript-container">
-        <div id="sacred-text-container"></div>
-    </div>
+    </main>
 
     <footer>
         <p>
-            Created with ❤️ using 
-            <a href="https://github.com/Curbob/image-flipbook" target="_blank">ImageFlipbook v1.1.1</a>
-        </p>
-        <p>
-            <a href="https://github.com/Curbob/sacred-texts" target="_blank">View on GitHub</a> | 
-            <a href="https://npmjs.com/package/image-flipbook" target="_blank">ImageFlipbook Library</a>
+            🔮 Experience the ancient wisdom in digital form<br>
+            <small>Powered by the <a href="https://npmjs.com/package/image-flipbook" target="_blank">ImageFlipbook Library</a></small>
         </p>
     </footer>
 
-    <!-- Load ImageFlipbook v1.1.1 from CDN -->
-    <script src="https://unpkg.com/image-flipbook@1.1.1/dist/image-flipbook.min.js"></script>
-
     <script>
-        // Wait for page to load completely
-        window.addEventListener('load', () => {
-            console.log('🚀 Page loaded, checking ImageFlipbook...');
-            
-            if (typeof ImageFlipbook === 'undefined') {
-                console.error('❌ ImageFlipbook library not found!');
-                document.getElementById('sacred-text-container').innerHTML = 
-                    '<p style="color: #dc3545; text-align: center; padding: 40px;">❌ Sacred Texts library failed to load. Please refresh the page.</p>';
-                return;
+        // Simple ImageFlipbook class with fixed methods
+        class ImageFlipbook {
+            constructor(options = {}) {
+                this.config = {
+                    container: options.container || '#flipbook-container',
+                    pages: options.pages || [],
+                    pagePattern: options.pagePattern || null,
+                    totalPages: options.totalPages || null,
+                    currentPage: options.startPage || 1,
+                    theme: options.theme || 'default',
+                    chapters: options.chapters || [],
+                    chapterStyle: options.chapterStyle || 'buttons',
+                    chapterPosition: options.chapterPosition || 'bottom',
+                    fullscreenEnabled: options.fullscreenEnabled !== false,
+                    socialSharing: options.socialSharing || false,
+                    title: options.title || 'Image Flipbook',
+                    allowDualPage: options.allowDualPage !== false,
+                    imageFit: options.imageFit || 'contain',
+                    enforceHTTPS: options.enforceHTTPS !== false,
+                    preventRightClick: options.preventRightClick || false,
+                    validateImageSources: options.validateImageSources || false,
+                    allowedDomains: options.allowedDomains || [],
+                    ...options
+                };
+                
+                this.currentPage = this.config.currentPage;
+                this.totalPages = this.config.totalPages || this.config.pages.length;
+                this.container = null;
+                this.pageMode = this.loadPageMode();
+                this.init();
             }
-            
-            console.log('✅ ImageFlipbook library found');
-            
-            try {
-                // Build page array (68 Sacred Text pages)
-                const pages = [];
-                for (let i = 1; i <= 68; i++) {
-                    const pageNum = i.toString().padStart(2, '0');
-                    pages.push(`./pages/page-${pageNum}.png`);
+
+            init() {
+                this.container = typeof this.config.container === 'string' ? 
+                    document.querySelector(this.config.container) : this.config.container;
+                
+                if (!this.container) {
+                    throw new Error(`Container not found: ${this.config.container}`);
                 }
                 
-                console.log(`📄 Built ${pages.length} page paths`);
-                console.log('🔧 Initializing Sacred Texts flipbook...');
+                this.render();
+                this.bindEvents();
+                this.loadPage(this.currentPage);
+            }
 
-                // Initialize Sacred Texts with v1.1.1 security hardening
-                const sacredText = new ImageFlipbook({
-                    container: '#sacred-text-container',
-                    title: '',  // Title in header instead
-                    
-                    // Your 68 Sacred Text pages (local paths = secure!)
-                    pages: pages,
-                    
-                    // Chapter navigation
-                    chapters: [
-                        { name: "📜 Frontispiece", page: 1 },
-                        { name: "👑 Saints & Hours", page: 10 }, 
-                        { name: "⚡ Sacred Protocols", page: 26 },
-                        { name: "📚 Gospels & Wisdom", page: 50 },
-                        { name: "🔚 Colophon", page: 68 }
-                    ],
-                    
-                    // Reading experience
-                    theme: 'medieval',
-                    allowDualPage: true,        // ✨ Reader can choose 1 or 2 page view
-                    imageFit: 'contain',        // Shows full pages without cropping
-                    fullscreenEnabled: true,
-                    chapterStyle: 'buttons',
-                    chapterPosition: 'bottom',
-                    socialSharing: false,       // Clean interface
-                    
-                    // 🔒 v1.1.1 Security Features
-                    enforceHTTPS: true,         // Convert any HTTP images to HTTPS
-                    preventRightClick: true,    // Protect Sacred Text images from easy saving
-                    validateImageSources: false // Not needed - we use secure local paths
-                });
+            render() {
+                this.container.innerHTML = `
+                    <div class="flipbook-wrapper" data-theme="${this.config.theme}">
+                        <div class="flipbook-viewer">
+                            <div class="page-display" id="page-display">
+                                <div class="loading">Loading...</div>
+                            </div>
+                        </div>
+                        <div class="flipbook-controls">
+                            <div class="nav-controls">
+                                <button class="nav-button" id="prev-btn">← Prev</button>
+                                <span class="page-info">
+                                    Page <input type="number" id="page-input" min="1" max="${this.totalPages}" value="${this.currentPage}"> of ${this.totalPages}
+                                </span>
+                                <button class="nav-button" id="next-btn">Next →</button>
+                                ${this.config.allowDualPage ? `
+                                    <div class="page-mode-toggle" title="Choose your reading view">
+                                        <span class="toggle-label">View:</span>
+                                        <button class="toggle-btn ${this.pageMode === 'single' ? 'active' : ''}" id="single-page-btn">1 Page</button>
+                                        <button class="toggle-btn ${this.pageMode === 'dual' ? 'active' : ''}" id="dual-page-btn">2 Pages</button>
+                                    </div>
+                                ` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                this.injectCSS();
+            }
 
-                console.log('✅ Sacred Texts of Code v1.1.1 loaded with security hardening!');
-                console.log('🔮 The ancient wisdom has been awakened...');
+            loadPage(pageNum) {
+                if (pageNum < 1 || pageNum > this.totalPages) return;
                 
+                const display = document.getElementById('page-display');
+                if (this.pageMode === 'single' || pageNum === 1) {
+                    this.loadSinglePage(pageNum, display);
+                } else {
+                    this.loadDualPages(pageNum, display);
+                }
+                
+                this.currentPage = pageNum;
+                this.updateControls();
+            }
+
+            loadSinglePage(pageNum, display) {
+                const imagePath = this.getPagePath(pageNum);
+                display.innerHTML = `
+                    <div class="loading">Loading page ${pageNum}...</div>
+                    ${this.config.fullscreenEnabled ? '<button class="fullscreen-btn">⛶ Full</button>' : ''}
+                `;
+                
+                const img = new Image();
+                img.onload = () => {
+                    display.innerHTML = `
+                        <div class="page-container single-page">
+                            <img class="page-image" src="${imagePath}" alt="Page ${pageNum}" title="Page ${pageNum}">
+                        </div>
+                        ${this.config.fullscreenEnabled ? '<button class="fullscreen-btn">⛶ Full</button>' : ''}
+                    `;
+                    
+                    if (this.config.fullscreenEnabled) {
+                        display.querySelector('.page-image').onclick = () => this.toggleFullscreen();
+                        const fullBtn = display.querySelector('.fullscreen-btn');
+                        if (fullBtn) fullBtn.onclick = () => this.toggleFullscreen();
+                    }
+                };
+                
+                img.onerror = () => {
+                    display.innerHTML = `
+                        <div class="loading error">Page ${pageNum} not found</div>
+                        ${this.config.fullscreenEnabled ? '<button class="fullscreen-btn">⛶ Full</button>' : ''}
+                    `;
+                };
+                
+                img.src = imagePath;
+            }
+
+            loadDualPages(pageNum, display) {
+                const leftPagePath = this.getPagePath(pageNum);
+                const rightPagePath = pageNum < this.totalPages ? this.getPagePath(pageNum + 1) : null;
+                
+                display.innerHTML = `
+                    <div class="loading">Loading pages ${pageNum}${rightPagePath ? ` & ${pageNum + 1}` : ''}...</div>
+                    ${this.config.fullscreenEnabled ? '<button class="fullscreen-btn">⛶ Full</button>' : ''}
+                `;
+                
+                const leftImg = new Image();
+                const rightImg = rightPagePath ? new Image() : null;
+                let loadedCount = 0;
+                const totalImages = rightImg ? 2 : 1;
+                
+                const onImageLoad = () => {
+                    loadedCount++;
+                    if (loadedCount === totalImages) {
+                        const rightPageHtml = rightImg ? 
+                            `<img class="page-image right-page" src="${rightPagePath}" alt="Page ${pageNum + 1}" title="Page ${pageNum + 1}">` : '';
+                        
+                        display.innerHTML = `
+                            <div class="page-container dual-page">
+                                <img class="page-image left-page" src="${leftPagePath}" alt="Page ${pageNum}" title="Page ${pageNum}">
+                                ${rightPageHtml}
+                            </div>
+                            ${this.config.fullscreenEnabled ? '<button class="fullscreen-btn">⛶ Full</button>' : ''}
+                        `;
+                        
+                        if (this.config.fullscreenEnabled) {
+                            display.querySelectorAll('.page-image').forEach(img => {
+                                img.onclick = () => this.toggleFullscreen();
+                            });
+                            const fullBtn = display.querySelector('.fullscreen-btn');
+                            if (fullBtn) fullBtn.onclick = () => this.toggleFullscreen();
+                        }
+                    }
+                };
+                
+                leftImg.onload = onImageLoad;
+                leftImg.onerror = onImageLoad;
+                leftImg.src = leftPagePath;
+                
+                if (rightImg) {
+                    rightImg.onload = onImageLoad;
+                    rightImg.onerror = onImageLoad;
+                    rightImg.src = rightPagePath;
+                }
+            }
+
+            getPagePath(pageNum) {
+                if (this.config.pages.length > 0) {
+                    return this.config.pages[pageNum - 1];
+                } else if (this.config.pagePattern) {
+                    const pageStr = pageNum.toString().padStart(2, '0');
+                    return this.config.pagePattern.replace('{##}', pageStr);
+                } else {
+                    throw new Error('No pages or pagePattern specified');
+                }
+            }
+
+            nextPage() {
+                const increment = this.getPageIncrement();
+                const nextPage = this.currentPage + increment;
+                if (nextPage <= this.totalPages) {
+                    this.loadPage(nextPage);
+                }
+            }
+
+            prevPage() {
+                const decrement = this.getPageDecrement();
+                const prevPage = this.currentPage - decrement;
+                if (prevPage >= 1) {
+                    this.loadPage(prevPage);
+                }
+            }
+
+            getPageIncrement() {
+                if (this.pageMode === 'single' || this.currentPage === 1) {
+                    return 1;
+                }
+                return (this.currentPage + 1 >= this.totalPages) ? 1 : 2;
+            }
+
+            getPageDecrement() {
+                if (this.pageMode === 'single') {
+                    return 1;
+                }
+                if (this.currentPage <= 3) {
+                    return this.currentPage - 1;
+                }
+                return 2;
+            }
+
+            goToPage(pageNum) {
+                const num = parseInt(pageNum);
+                if (num >= 1 && num <= this.totalPages) {
+                    this.loadPage(num);
+                }
+            }
+
+            updateControls() {
+                const prevBtn = document.getElementById('prev-btn');
+                const nextBtn = document.getElementById('next-btn');
+                const pageInput = document.getElementById('page-input');
+                
+                if (prevBtn) prevBtn.disabled = (this.currentPage <= 1);
+                if (nextBtn) nextBtn.disabled = (this.currentPage >= this.totalPages);
+                if (pageInput) pageInput.value = this.currentPage;
+            }
+
+            bindEvents() {
+                const prevBtn = document.getElementById('prev-btn');
+                const nextBtn = document.getElementById('next-btn');
+                const singleBtn = document.getElementById('single-page-btn');
+                const dualBtn = document.getElementById('dual-page-btn');
+                const pageInput = document.getElementById('page-input');
+                
+                if (prevBtn) prevBtn.addEventListener('click', () => this.prevPage());
+                if (nextBtn) nextBtn.addEventListener('click', () => this.nextPage());
+                if (singleBtn) singleBtn.addEventListener('click', () => this.setPageMode('single'));
+                if (dualBtn) dualBtn.addEventListener('click', () => this.setPageMode('dual'));
+                if (pageInput) pageInput.addEventListener('change', (e) => this.goToPage(e.target.value));
+                
+                // Keyboard controls
+                document.addEventListener('keydown', (e) => {
+                    if (e.target.tagName === 'INPUT') return;
+                    
+                    switch(e.key) {
+                        case 'ArrowLeft':
+                        case 'ArrowUp':
+                            this.prevPage();
+                            break;
+                        case 'ArrowRight':
+                        case 'ArrowDown':
+                        case ' ':
+                            e.preventDefault();
+                            this.nextPage();
+                            break;
+                        case 'Home':
+                            this.goToPage(1);
+                            break;
+                        case 'End':
+                            this.goToPage(this.totalPages);
+                            break;
+                        case 'f':
+                        case 'F':
+                            if (this.config.fullscreenEnabled) {
+                                this.toggleFullscreen();
+                            }
+                            break;
+                    }
+                });
+                
+                window.flipbook = this;
+            }
+
+            setPageMode(mode) {
+                if (mode === this.pageMode) return;
+                if (mode === 'dual' && !this.config.allowDualPage) return;
+                
+                this.pageMode = mode;
+                this.savePageMode();
+                
+                const singleBtn = document.getElementById('single-page-btn');
+                const dualBtn = document.getElementById('dual-page-btn');
+                
+                if (singleBtn && dualBtn) {
+                    singleBtn.classList.toggle('active', mode === 'single');
+                    dualBtn.classList.toggle('active', mode === 'dual');
+                }
+                
+                this.loadPage(this.currentPage);
+            }
+
+            loadPageMode() {
+                if (!this.config.allowDualPage) return 'single';
+                
+                const saved = localStorage.getItem('flipbook-page-mode');
+                if (saved === 'single' || saved === 'dual') return saved;
+                
+                return window.innerWidth >= 768 ? 'dual' : 'single';
+            }
+
+            savePageMode() {
+                localStorage.setItem('flipbook-page-mode', this.pageMode);
+            }
+
+            toggleFullscreen() {
+                const pageContainer = document.querySelector('.page-container');
+                if (!pageContainer) return;
+                
+                if (!document.fullscreenElement) {
+                    const method = pageContainer.requestFullscreen || 
+                                 pageContainer.webkitRequestFullscreen || 
+                                 pageContainer.mozRequestFullScreen || 
+                                 pageContainer.msRequestFullscreen;
+                    if (method) method.call(pageContainer);
+                } else {
+                    const method = document.exitFullscreen || 
+                                 document.webkitExitFullscreen || 
+                                 document.mozCancelFullScreen || 
+                                 document.msExitFullscreen;
+                    if (method) method.call(document);
+                }
+            }
+
+            injectCSS() {
+                if (document.getElementById('flipbook-styles')) return;
+                
+                const style = document.createElement('style');
+                style.id = 'flipbook-styles';
+                style.textContent = `
+                    .flipbook-wrapper {
+                        font-family: 'Georgia', serif;
+                        max-width: 1000px;
+                        margin: 0 auto;
+                        padding: 20px;
+                        color: #333;
+                    }
+                    
+                    .flipbook-wrapper[data-theme="medieval"] {
+                        background: linear-gradient(45deg, #1a1a2e, #16213e);
+                        color: #d4af37;
+                        border-radius: 15px;
+                        padding: 30px;
+                    }
+                    
+                    .page-display {
+                        position: relative;
+                        background: #f4f1e8;
+                        width: 80vw;
+                        max-width: 1200px;
+                        height: 60vh;
+                        max-height: 600px;
+                        border: 3px solid #8B4513;
+                        border-radius: 10px;
+                        overflow: hidden;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        margin: 0 auto;
+                    }
+                    
+                    .page-container {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 100%;
+                        height: 100%;
+                        gap: 10px;
+                    }
+                    
+                    .page-container.single-page { gap: 0; }
+                    .page-container.dual-page { gap: 10px; }
+                    
+                    .page-image {
+                        object-fit: contain;
+                        cursor: pointer;
+                        transition: transform 0.2s ease;
+                    }
+                    
+                    .single-page .page-image {
+                        max-width: 100%;
+                        max-height: 100%;
+                        object-fit: ${this.config.imageFit};
+                    }
+                    
+                    .dual-page .page-image {
+                        max-width: 48%;
+                        max-height: 100%;
+                        border: 1px solid #ccc;
+                        border-radius: 5px;
+                        object-fit: ${this.config.imageFit};
+                    }
+                    
+                    .page-image:hover { transform: scale(1.02); }
+                    
+                    .loading {
+                        font-size: 1.2em;
+                        color: #666;
+                        text-align: center;
+                    }
+                    
+                    .loading.error { color: #d32f2f; }
+                    
+                    .fullscreen-btn {
+                        position: absolute;
+                        top: 10px;
+                        right: 10px;
+                        background: rgba(0,0,0,0.7);
+                        color: white;
+                        border: none;
+                        padding: 8px 12px;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        font-size: 14px;
+                    }
+                    
+                    .fullscreen-btn:hover { background: rgba(0,0,0,0.9); }
+                    
+                    .flipbook-controls {
+                        text-align: center;
+                        margin-top: 20px;
+                    }
+                    
+                    .nav-controls {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 15px;
+                        margin-bottom: 15px;
+                        flex-wrap: wrap;
+                    }
+                    
+                    .nav-button {
+                        background: linear-gradient(45deg, #8B4513, #A0522D);
+                        border: 2px solid #d4af37;
+                        color: #d4af37;
+                        font-weight: bold;
+                        padding: 10px 20px;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        font-size: 16px;
+                        transition: all 0.3s ease;
+                    }
+                    
+                    .nav-button:hover:not(:disabled) {
+                        background: linear-gradient(45deg, #A0522D, #CD853F);
+                        box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+                        transform: translateY(-2px);
+                    }
+                    
+                    .nav-button:disabled {
+                        background: #ccc;
+                        color: #666;
+                        cursor: not-allowed;
+                        transform: none;
+                        border-color: #999;
+                    }
+                    
+                    .page-info {
+                        font-size: 16px;
+                        font-weight: bold;
+                        color: #d4af37;
+                    }
+                    
+                    #page-input {
+                        width: 60px;
+                        text-align: center;
+                        border: 1px solid #ccc;
+                        border-radius: 3px;
+                        padding: 2px 5px;
+                        margin: 0 5px;
+                    }
+                    
+                    .page-mode-toggle {
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                        font-size: 14px;
+                    }
+                    
+                    .toggle-label {
+                        font-weight: bold;
+                        color: #d4af37;
+                    }
+                    
+                    .toggle-btn {
+                        background: rgba(139, 69, 19, 0.3);
+                        color: #d4af37;
+                        border: 2px solid #8B4513;
+                        padding: 6px 12px;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        font-size: 13px;
+                        transition: all 0.3s ease;
+                        min-width: 60px;
+                    }
+                    
+                    .toggle-btn:hover {
+                        background: rgba(139, 69, 19, 0.5);
+                        border-color: #d4af37;
+                    }
+                    
+                    .toggle-btn.active {
+                        background: linear-gradient(45deg, #4A148C, #6A1B9A);
+                        border-color: #d4af37;
+                        color: #d4af37;
+                        font-weight: bold;
+                    }
+                    
+                    .toggle-btn.active:hover {
+                        background: linear-gradient(45deg, #6A1B9A, #8E24AA);
+                    }
+                    
+                    @media (max-width: 768px) {
+                        .page-display {
+                            width: 95vw;
+                            height: 50vh;
+                        }
+                        
+                        .nav-controls {
+                            gap: 12px;
+                            padding: 15px 10px;
+                        }
+                        
+                        .nav-button {
+                            font-size: 16px;
+                            padding: 12px 18px;
+                            min-width: 44px;
+                            min-height: 44px;
+                        }
+                        
+                        .page-mode-toggle {
+                            flex-basis: 100%;
+                            margin-top: 15px;
+                            justify-content: center;
+                            gap: 15px;
+                        }
+                        
+                        .toggle-btn {
+                            font-size: 15px;
+                            padding: 12px 20px;
+                            min-width: 80px;
+                            min-height: 44px;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+
+        // Initialize the Sacred Texts
+        window.addEventListener('load', () => {
+            console.log('🚀 Page loaded, initializing Sacred Texts...');
+            
+            try {
+                const sacredTexts = new ImageFlipbook({
+                    container: '#sacred-text-container',
+                    title: 'The Sacred Texts of Code',
+                    pagePattern: './pages/page-{##}.png',
+                    totalPages: 68,
+                    theme: 'medieval',
+                    socialSharing: false,
+                    allowDualPage: true,
+                    fullscreenEnabled: true,
+                    preventRightClick: true,
+                    imageFit: 'contain'
+                });
+                
+                console.log('✅ Sacred Texts initialized successfully!');
             } catch (error) {
                 console.error('❌ Error initializing Sacred Texts:', error);
-                document.getElementById('sacred-text-container').innerHTML = 
-                    `<p style="color: #dc3545; text-align: center; padding: 40px;">❌ Error loading Sacred Texts: ${error.message}</p>`;
+                document.getElementById('sacred-text-container').innerHTML = `
+                    <div style="color: #dc3545; text-align: center; padding: 40px;">
+                        ❌ Error loading Sacred Texts: ${error.message}<br>
+                        <small>Please refresh the page or try again later.</small>
+                    </div>
+                `;
             }
         });
     </script>
