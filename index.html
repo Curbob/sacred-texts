@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ The Sacred Texts of Code ✨</title>
+    
+    <!-- 🔒 Security Features (auto-added by ImageFlipbook v1.1.1) -->
+    <meta name="description" content="Ancient wisdom for the digital age. Interactive manuscript with dual-page reading mode.">
+    
+    <!-- Open Graph for social sharing -->
+    <meta property="og:title" content="The Sacred Texts of Code">
+    <meta property="og:description" content="Ancient programming wisdom in a beautiful interactive manuscript">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="./pages/page-01.png">
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #0f0f23, #1a1a2e, #16213e);
+            color: #d4af37;
+            min-height: 100vh;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(45deg, rgba(139, 69, 19, 0.1), rgba(212, 175, 55, 0.1));
+            border-bottom: 2px solid #d4af37;
+        }
+        
+        .sacred-title {
+            font-size: 3em;
+            margin: 0;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
+            font-weight: bold;
+            background: linear-gradient(45deg, #d4af37, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .sacred-subtitle {
+            font-size: 1.2em;
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+            font-style: italic;
+        }
+        
+        .intro {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+            text-align: center;
+            line-height: 1.6;
+        }
+        
+        .intro p {
+            font-size: 1.1em;
+            margin: 20px 0;
+        }
+        
+        .manuscript-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .feature {
+            background: rgba(139, 69, 19, 0.2);
+            padding: 15px 25px;
+            border-radius: 10px;
+            border: 1px solid #8B4513;
+            text-align: center;
+        }
+        
+        .feature-icon {
+            font-size: 2em;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(0,0,0,0.3);
+            margin-top: 40px;
+            border-top: 1px solid #8B4513;
+        }
+        
+        footer a {
+            color: #d4af37;
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            color: #ffd700;
+        }
+        
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .sacred-title {
+                font-size: 2em;
+            }
+            
+            .features {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .feature {
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1 class="sacred-title">✨ THE SACRED TEXTS OF CODE ✨</h1>
+        <p class="sacred-subtitle">Ancient Wisdom for the Digital Age</p>
+    </header>
+
+    <div class="intro">
+        <p>📜 Behold the ancient programming wisdom, preserved through the ages and presented in a beautiful interactive manuscript.</p>
+        
+        <p>🔮 Experience the dual-page reading mode, just like reading a physical tome. Click between single and dual-page views to match your device and preference.</p>
+        
+        <div class="features">
+            <div class="feature">
+                <span class="feature-icon">📖</span>
+                <strong>Dual-Page Reading</strong><br>
+                Desktop & mobile optimized
+            </div>
+            <div class="feature">
+                <span class="feature-icon">⛶</span>
+                <strong>Fullscreen Mode</strong><br>
+                Immersive reading experience
+            </div>
+            <div class="feature">
+                <span class="feature-icon">🔒</span>
+                <strong>Protected Content</strong><br>
+                Sacred pages secured
+            </div>
+            <div class="feature">
+                <span class="feature-icon">📱</span>
+                <strong>Touch Navigation</strong><br>
+                Swipe through wisdom
+            </div>
+        </div>
+    </div>
+
+    <div class="manuscript-container">
+        <div id="sacred-text-container"></div>
+    </div>
+
+    <footer>
+        <p>
+            Created with ❤️ using 
+            <a href="https://github.com/Curbob/image-flipbook" target="_blank">ImageFlipbook v1.1.1</a>
+        </p>
+        <p>
+            <a href="https://github.com/Curbob/sacred-texts" target="_blank">View on GitHub</a> | 
+            <a href="https://npmjs.com/package/image-flipbook" target="_blank">ImageFlipbook Library</a>
+        </p>
+    </footer>
+
+    <!-- Load ImageFlipbook v1.1.1 from CDN -->
+    <script src="https://unpkg.com/image-flipbook@1.1.1/dist/image-flipbook.min.js"></script>
+
+    <script>
+        // Build page array (68 Sacred Text pages)
+        const pages = [];
+        for (let i = 1; i <= 68; i++) {
+            const pageNum = i.toString().padStart(2, '0');
+            pages.push(`pages/page-${pageNum}.png`);
+        }
+
+        // Initialize Sacred Texts with v1.1.1 security hardening
+        const sacredText = new ImageFlipbook({
+            container: '#sacred-text-container',
+            title: '',  // Title in header instead
+            
+            // Your 68 Sacred Text pages (local paths = secure!)
+            pages: pages,
+            
+            // Chapter navigation
+            chapters: [
+                { name: "📜 Frontispiece", page: 1 },
+                { name: "👑 Saints & Hours", page: 10 }, 
+                { name: "⚡ Sacred Protocols", page: 26 },
+                { name: "📚 Gospels & Wisdom", page: 50 },
+                { name: "🔚 Colophon", page: 68 }
+            ],
+            
+            // Reading experience
+            theme: 'medieval',
+            allowDualPage: true,        // ✨ Reader can choose 1 or 2 page view
+            imageFit: 'contain',        // Shows full pages without cropping
+            fullscreenEnabled: true,
+            chapterStyle: 'buttons',
+            chapterPosition: 'bottom',
+            socialSharing: false,       // Clean interface
+            
+            // 🔒 v1.1.1 Security Features
+            enforceHTTPS: true,         // Convert any HTTP images to HTTPS
+            preventRightClick: true,    // Protect Sacred Text images from easy saving
+            validateImageSources: false // Not needed - we use secure local paths
+        });
+
+        console.log('✨ Sacred Texts of Code v1.1.1 loaded with security hardening!');
+        
+        // Add some mystical loading flair
+        window.addEventListener('load', () => {
+            console.log('🔮 The ancient wisdom has been awakened...');
+        });
+    </script>
+</body>
+</html>
