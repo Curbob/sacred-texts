@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>🔍 Sacred Texts Test</title>
+    <style>body { font-family: Arial, sans-serif; padding: 20px; }</style>
+</head>
+<body>
+    <h1>🔍 Simple Test</h1>
+    <div id="flipbook"></div>
+    <div id="debug"></div>
+    
+    <script src="./image-flipbook.min.js"></script>
+    <script>
+        window.addEventListener('load', () => {
+            const debug = document.getElementById('debug');
+            
+            if (typeof ImageFlipbook !== 'undefined') {
+                debug.innerHTML += '✅ ImageFlipbook loaded<br>';
+                
+                try {
+                    const test = new ImageFlipbook({
+                        container: '#flipbook',
+                        title: 'Test',
+                        pages: ['./pages/page-01.png', './pages/page-02.png', './pages/page-03.png'],
+                        theme: 'medieval',
+                        socialSharing: false
+                    });
+                    debug.innerHTML += '✅ Flipbook created<br>';
+                } catch (e) {
+                    debug.innerHTML += '❌ Error: ' + e.message + '<br>';
+                }
+            } else {
+                debug.innerHTML += '❌ ImageFlipbook not found<br>';
+            }
+        });
+    </script>
+</body>
+</html>
