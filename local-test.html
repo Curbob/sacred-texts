@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head><title>Local Test</title></head>
+<body>
+    <div id="test"></div>
+    <script src="./image-flipbook.min.js"></script>
+    <script>
+        console.log('ImageFlipbook type:', typeof ImageFlipbook);
+        console.log('window.ImageFlipbook type:', typeof window.ImageFlipbook);
+        
+        if (typeof ImageFlipbook !== 'undefined') {
+            document.getElementById('test').innerHTML = '✅ ImageFlipbook loaded!';
+            try {
+                new ImageFlipbook({
+                    container: '#test',
+                    pages: ['./pages/page-01.png'],
+                    title: 'Test'
+                });
+                console.log('✅ Flipbook created successfully');
+            } catch (e) {
+                console.error('❌ Error:', e);
+            }
+        } else {
+            document.getElementById('test').innerHTML = '❌ ImageFlipbook not found';
+        }
+    </script>
+</body>
+</html>
