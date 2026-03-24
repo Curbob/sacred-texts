@@ -281,7 +281,7 @@
                 const increment = this.getPageIncrement();
                 const nextPage = this.currentPage + increment;
                 if (nextPage <= this.totalPages) {
-                    this.loadPage(nextPage);
+                    this.loadPageSmart(nextPage);
                 }
             }
 
@@ -289,7 +289,113 @@
                 const decrement = this.getPageDecrement();
                 const prevPage = this.currentPage - decrement;
                 if (prevPage >= 1) {
-                    this.loadPage(prevPage);
+                    this.loadPageSmart(prevPage);
+                }
+            }
+
+            loadPageSmart(pageNum) {
+                if (document.fullscreenElement) {
+                    this.changeFullscreenPage(pageNum);
+                } else {
+                    this.loadPage(pageNum);
+                }
+            }
+
+            changeFullscreenPage(pageNum) {
+                const fullscreenElement = document.fullscreenElement;
+                if (fullscreenElement) {
+                    this.currentPage = pageNum;
+                    const pageInput = document.getElementById('page-input');
+                    if (pageInput) {
+                        pageInput.value = pageNum;
+                    }
+                    this.updateControls();
+                    
+                    if (this.pageMode === 'single' || pageNum === 1) {
+                        this.updateFullscreenSinglePage(pageNum, fullscreenElement);
+                    } else {
+                        this.updateFullscreenDualPage(pageNum, fullscreenElement);
+                    }
+                }
+            }
+
+            updateFullscreenSinglePage(pageNum, fullscreenElement) {
+                const imagePath = this.getPagePath(pageNum);
+                fullscreenElement.innerHTML = '<div style="color: white; font-size: 2em; text-align: center;">Loading...</div>';
+                
+                const img = new Image();
+                img.onload = () => {
+                    fullscreenElement.innerHTML = `
+                        <img src="${imagePath}" alt="Page ${pageNum}" style="
+                            max-width: 100vw;
+                            max-height: 100vh;
+                            object-fit: ${this.config.imageFit};
+                            display: block;
+                            margin: auto;
+                            background: black;
+                        ">
+                    `;
+                };
+                
+                img.onerror = () => {
+                    fullscreenElement.innerHTML = '<div style="color: red; font-size: 2em; text-align: center;">Failed to load page</div>';
+                };
+                
+                img.src = imagePath;
+            }
+
+            updateFullscreenDualPage(pageNum, fullscreenElement) {
+                const leftPagePath = this.getPagePath(pageNum);
+                const rightPagePath = pageNum < this.totalPages ? this.getPagePath(pageNum + 1) : null;
+                
+                fullscreenElement.innerHTML = '<div style="color: white; font-size: 2em; text-align: center;">Loading...</div>';
+                
+                const leftImg = new Image();
+                const rightImg = rightPagePath ? new Image() : null;
+                let loadedCount = 0;
+                const totalImages = rightImg ? 2 : 1;
+                
+                const onImageLoad = () => {
+                    loadedCount++;
+                    if (loadedCount === totalImages) {
+                        const rightImageHtml = rightImg ? `
+                            <img src="${rightPagePath}" alt="Page ${pageNum + 1}" style="
+                                max-width: 48vw;
+                                max-height: 100vh;
+                                object-fit: ${this.config.imageFit};
+                                margin: 0 1vw;
+                            ">
+                        ` : '';
+                        
+                        fullscreenElement.innerHTML = `
+                            <div style="
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                height: 100vh;
+                                background: black;
+                                gap: 2vw;
+                            ">
+                                <img src="${leftPagePath}" alt="Page ${pageNum}" style="
+                                    max-width: 48vw;
+                                    max-height: 100vh;
+                                    object-fit: ${this.config.imageFit};
+                                    margin: 0 1vw;
+                                ">
+                                ${rightImageHtml}
+                            </div>
+                        `;
+                    }
+                };
+                
+                leftImg.onload = onImageLoad;
+                leftImg.onerror = onImageLoad;
+                leftImg.src = leftPagePath;
+                
+                if (rightImg) {
+                    rightImg.onload = onImageLoad;
+                    rightImg.onerror = onImageLoad;
+                    rightImg.src = rightPagePath;
                 }
             }
 
@@ -313,7 +419,7 @@
             goToPage(pageNum) {
                 const num = parseInt(pageNum);
                 if (num >= 1 && num <= this.totalPages) {
-                    this.loadPage(num);
+                    this.loadPageSmart(num);
                 }
             }
 
@@ -370,7 +476,25 @@
                     }
                 });
                 
+                // Handle fullscreen changes
+                document.addEventListener('fullscreenchange', () => this.handleFullscreenChange());
+                document.addEventListener('webkitfullscreenchange', () => this.handleFullscreenChange());
+                document.addEventListener('mozfullscreenchange', () => this.handleFullscreenChange());
+                document.addEventListener('msfullscreenchange', () => this.handleFullscreenChange());
+                
                 window.flipbook = this;
+            }
+
+            handleFullscreenChange() {
+                const isFullscreen = document.fullscreenElement || 
+                                   document.webkitFullscreenElement || 
+                                   document.mozFullScreenElement || 
+                                   document.msFullscreenElement;
+                
+                if (!isFullscreen) {
+                    // Exited fullscreen - reload the current page in normal view
+                    this.loadPage(this.currentPage);
+                }
             }
 
             setPageMode(mode) {
