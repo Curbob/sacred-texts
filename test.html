@@ -9,30 +9,54 @@
     <div id="flipbook"></div>
     <div id="debug"></div>
     
-    <script src="./image-flipbook.min.js"></script>
     <script>
-        window.addEventListener('load', () => {
+        console.log('🚀 Starting debug tests...');
+        
+        // Check immediately
+        console.log('window.ImageFlipbook at script load:', typeof window.ImageFlipbook);
+        
+        // Check after a delay
+        setTimeout(() => {
+            console.log('window.ImageFlipbook after timeout:', typeof window.ImageFlipbook);
+            updateDebug();
+        }, 100);
+        
+        function updateDebug() {
             const debug = document.getElementById('debug');
+            debug.innerHTML = '';
             
-            if (typeof ImageFlipbook !== 'undefined') {
-                debug.innerHTML += '✅ ImageFlipbook loaded<br>';
+            // Check what's available
+            debug.innerHTML += 'window.ImageFlipbook: ' + typeof window.ImageFlipbook + '<br>';
+            debug.innerHTML += 'ImageFlipbook: ' + (typeof ImageFlipbook !== 'undefined' ? 'found' : 'not found') + '<br>';
+            
+            // List all global properties containing 'flipbook' or 'Image'
+            const globals = Object.getOwnPropertyNames(window).filter(name => 
+                name.toLowerCase().includes('flipbook') || name.toLowerCase().includes('image')
+            );
+            debug.innerHTML += 'Globals with flipbook/image: ' + globals.join(', ') + '<br>';
+            
+            if (typeof window.ImageFlipbook !== 'undefined') {
+                debug.innerHTML += '✅ ImageFlipbook found on window<br>';
                 
                 try {
-                    const test = new ImageFlipbook({
+                    const test = new window.ImageFlipbook({
                         container: '#flipbook',
                         title: 'Test',
                         pages: ['./pages/page-01.png', './pages/page-02.png', './pages/page-03.png'],
                         theme: 'medieval',
                         socialSharing: false
                     });
-                    debug.innerHTML += '✅ Flipbook created<br>';
+                    debug.innerHTML += '✅ Flipbook created successfully<br>';
                 } catch (e) {
-                    debug.innerHTML += '❌ Error: ' + e.message + '<br>';
+                    debug.innerHTML += '❌ Error creating flipbook: ' + e.message + '<br>';
                 }
             } else {
-                debug.innerHTML += '❌ ImageFlipbook not found<br>';
+                debug.innerHTML += '❌ ImageFlipbook not found on window<br>';
             }
-        });
+        }
+        
+        window.addEventListener('load', updateDebug);
     </script>
+    <script src="./image-flipbook.min.js"></script>
 </body>
 </html>
