@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔍 Debug Sacred Texts</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+            background: #f0f0f0; 
+        }
+        .debug { 
+            background: #fff; 
+            padding: 20px; 
+            border-radius: 8px; 
+            margin: 10px 0; 
+            border-left: 4px solid #d4af37;
+        }
+        .error { border-left-color: #dc3545; }
+        .success { border-left-color: #28a745; }
+        #sacred-text-container { 
+            min-height: 400px; 
+            border: 2px dashed #ccc; 
+            margin: 20px 0; 
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 Sacred Texts Debug Page</h1>
+    
+    <div class="debug">
+        <h3>📊 Status Checks:</h3>
+        <div id="status">Checking...</div>
+    </div>
+
+    <div id="sacred-text-container">
+        <p style="color: #666;">🔄 Flipbook should load here...</p>
+    </div>
+
+    <div class="debug">
+        <h3>📝 Console Logs:</h3>
+        <div id="logs"></div>
+    </div>
+
+    <!-- Load ImageFlipbook from CDN -->
+    <script src="https://unpkg.com/image-flipbook@1.1.1/dist/image-flipbook.min.js"></script>
+
+    <script>
+        const statusDiv = document.getElementById('status');
+        const logsDiv = document.getElementById('logs');
+        
+        // Override console.log to capture logs
+        const originalLog = console.log;
+        const originalError = console.error;
+        
+        function addLog(message, type = 'info') {
+            const logEntry = document.createElement('div');
+            logEntry.textContent = `${new Date().toLocaleTimeString()}: ${message}`;
+            logEntry.style.color = type === 'error' ? '#dc3545' : '#333';
+            logsDiv.appendChild(logEntry);
+            
+            if (type === 'error') originalError(message);
+            else originalLog(message);
+        }
+        
+        console.log = addLog;
+        console.error = (msg) => addLog(msg, 'error');
+        
+        // Check if ImageFlipbook loaded
+        window.addEventListener('load', () => {
+            let status = '✅ Status Checks:\n';
+            
+            if (typeof ImageFlipbook !== 'undefined') {
+                status += '✅ ImageFlipbook library loaded\n';
+                addLog('✅ ImageFlipbook library found');
+                
+                try {
+                    // Build page array
+                    const pages = [];
+                    for (let i = 1; i <= 3; i++) {  // Test with just 3 pages first
+                        const pageNum = i.toString().padStart(2, '0');
+                        pages.push(`pages/page-${pageNum}.png`);
+                    }
+                    
+                    addLog(`📄 Built ${pages.length} page paths`);
+                    
+                    // Initialize flipbook
+                    const sacredText = new ImageFlipbook({
+                        container: '#sacred-text-container',
+                        title: 'Debug Sacred Texts',
+                        pages: pages,
+                        theme: 'medieval',
+                        allowDualPage: true,
+                        fullscreenEnabled: true,
+                        socialSharing: false,
+                        enforceHTTPS: false,  // Disable for debug
+                        preventRightClick: false,  // Disable for debug
+                    });
+                    
+                    addLog('✅ ImageFlipbook initialized successfully');
+                    status += '✅ Flipbook initialized\n';
+                    
+                } catch (error) {
+                    addLog(`❌ Error initializing flipbook: ${error.message}`, 'error');
+                    status += `❌ Flipbook error: ${error.message}\n`;
+                }
+                
+            } else {
+                addLog('❌ ImageFlipbook library not found', 'error');
+                status += '❌ ImageFlipbook library not loaded\n';
+            }
+            
+            // Check if pages exist
+            const img = new Image();
+            img.onload = () => {
+                addLog('✅ Page 1 image loads successfully');
+                status += '✅ Images accessible\n';
+                statusDiv.innerHTML = `<pre>${status}</pre>`;
+            };
+            img.onerror = () => {
+                addLog('❌ Page 1 image failed to load', 'error');
+                status += '❌ Images not accessible\n';
+                statusDiv.innerHTML = `<pre>${status}</pre>`;
+            };
+            img.src = 'pages/page-01.png';
+        });
+        
+        addLog('🚀 Debug script loaded');
+    </script>
+</body>
+</html>
